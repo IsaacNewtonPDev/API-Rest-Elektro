@@ -51,8 +51,6 @@ export class UserController {
           cpf: true,
           contato: true,
           foto: true,
-          createdAt: true,
-          updatedAt: true,
         },
       });
 
@@ -78,14 +76,14 @@ export class UserController {
       });
 
       if (!user) {
-        response.status(404).json({ message: "Usuário não encontrado" });
+        response.status(401).json({ message: "Email ou senha incorreta" });
         return;
       }
 
       const passwordMatch = auth.checkPassword(password, user.hash, user.salt);
 
       if (!passwordMatch) {
-        response.status(401).json({ message: "Senha incorreta" });
+        response.status(401).json({ message: "Email ou senha incorreta" });
         return;
       }
 
@@ -143,8 +141,6 @@ export class UserController {
           cpf: true,
           contato: true,
           foto: true,
-          createdAt: true,
-          updatedAt: true,
         },
       });
 
@@ -189,7 +185,6 @@ export class UserController {
           cpf: true,
           contato: true,
           foto: true,
-          updatedAt: true,
         },
       });
 
@@ -250,8 +245,6 @@ export class UserController {
           cpf: true,
           contato: true,
           foto: true,
-          createdAt: true,
-          updatedAt: true,
         },
       });
 
@@ -276,8 +269,11 @@ export class UserController {
         },
       });
 
-      response.status(200).json(deletedUser);
+      response.status(204).json(deletedUser);
     } catch (error: any) {
+      if (error.code === "P2025") {
+        return response.status(404).json({ message: "Usuário não encontrado" });
+      }
       response.status(500).json({ message: error.message });
     }
   }

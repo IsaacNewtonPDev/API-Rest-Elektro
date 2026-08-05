@@ -1,9 +1,8 @@
-node_modules/
-    .DS_Store
-    *.sqlite
-    *.png
-    *.jpg
-    .env
-    .idea
-    id_rsa_priv.pem
-    
+node_modules
+.env
+/generated/prisma
+*.pem
+*.key
+dist/
+build/
+npm-debug.log*

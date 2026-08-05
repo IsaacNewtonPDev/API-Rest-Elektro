@@ -64,3 +64,4 @@ const audioUpload = multer({
 });
 
 export { photoUpload, audioUpload };
+export default photoUpload;
