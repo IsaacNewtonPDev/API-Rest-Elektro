@@ -6,6 +6,8 @@ import { validateBody, validateParams } from "../middlewares/ValidateMiddleware"
 import UserValidator from "../config/userValidator";
 import ProdutoValidator from "../config/productValidator";
 import uploader from "../config/uploader";
+import { checkUserOwner } from "../middlewares/checkUserOwner";
+import { checkProductOwner } from "../middlewares/checkProductOwner";
 
 const router = Router();
 
@@ -40,6 +42,7 @@ router.get(
 router.put(
   "/user/:userId",
   authenticateJWT,
+  checkUserOwner,
   uploader.single("foto"),
   validateBody(UserValidator.updateUser),
   validateParams(UserValidator.userParam),
@@ -50,7 +53,7 @@ router.put(
   "/user/:userId/upsert",
   authenticateJWT,
   uploader.single("foto"),
-  validateBody(UserValidator.updateUser),
+  validateBody(UserValidator.createUser),
   validateParams(UserValidator.userParam),
   UserController.upsertUser,
 );
@@ -58,6 +61,7 @@ router.put(
 router.delete(
   "/user/:userId",
   authenticateJWT,
+  checkUserOwner,
   validateParams(UserValidator.userParam),
   UserController.deleteUser,
 );
@@ -90,6 +94,7 @@ router.get(
 router.put(
   "/product/:idProduto",
   authenticateJWT,
+  checkProductOwner,
   uploader.single("imagem"),
   validateBody(ProdutoValidator.updateProduto),
   validateParams(ProdutoValidator.produtoParam),
@@ -100,7 +105,7 @@ router.put(
   "/product/:idProduto/upsert",
   authenticateJWT,
   uploader.single("imagem"),
-  validateBody(ProdutoValidator.updateProduto),
+  validateBody(ProdutoValidator.createProduto),
   validateParams(ProdutoValidator.produtoParam),
   ProdutoController.upsertProduto,
 );
@@ -108,6 +113,7 @@ router.put(
 router.delete(
   "/product/:idProduto",
   authenticateJWT,
+  checkProductOwner,
   validateParams(ProdutoValidator.produtoParam),
   ProdutoController.deleteProduto,
 );

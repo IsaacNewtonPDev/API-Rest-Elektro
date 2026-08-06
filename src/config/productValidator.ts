@@ -12,17 +12,16 @@ const produto = z.object({
     .min(5, "descrição deve ter no mínimo 5 caracteres")
     .max(200, "descriçao não deve ter mais que 200 caracteres"),
   preco: z
-    .number("preço deve ser number")
+    .coerce.number("preço deve ser number")
     .min(0, "preço não pode ser negativo"),
   avaliacao: z
-    .number("avaliação deve ser number")
+    .coerce.number("avaliação deve ser number")
     .min(0, "avaliação não pode ser negativa")
     .max(5, "avaliação não pode ser maior que 5")
     .optional(),
-  userId: z
-    .number("userId deve ser number")
-    .int("userId deve ser inteiro")
-    .positive("userId deve ser positivo"),
+  categoria: z
+    .string()
+    .min(3),
 });
 
 const createProduto = produto;

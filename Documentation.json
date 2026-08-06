@@ -1,0 +1,4372 @@
+{
+  "info": {
+    "_postman_id": "ebea76bd-cebc-4acb-9249-eaf94f8ecb9b",
+    "name": "Api Rest - Elektro Testes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56769796",
+    "_collection_link": "https://go.postman.co/collection/56769796-ebea76bd-cebc-4acb-9249-eaf94f8ecb9b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CRUD User - Create",
+      "item": [
+        {
+          "name": "User Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Pedro Santos",
+                  "type": "text",
+                  "uuid": "92eb9a4e-340f-47ee-8ed9-0d60ca4cc073"
+                },
+                {
+                  "key": "email",
+                  "value": "pedro@email.com",
+                  "type": "text",
+                  "uuid": "170812ee-c05e-4437-bc27-ab8b0ac9fffb"
+                },
+                {
+                  "key": "password",
+                  "value": "senha123",
+                  "type": "text",
+                  "uuid": "63bab53d-dd12-4a38-8b8f-63a87b9ab8aa"
+                },
+                {
+                  "key": "cpf",
+                  "value": "123",
+                  "type": "text",
+                  "uuid": "bf2f5b6e-e0ad-44a4-bbbf-e430eb142f3c"
+                },
+                {
+                  "key": "contato",
+                  "value": "11666666666",
+                  "type": "text",
+                  "uuid": "dda64811-122c-41fe-a9a9-8ec8686f34b9"
+                },
+                {
+                  "key": "foto",
+                  "type": "file",
+                  "uuid": "900a258b-99c8-44e6-9b34-565b3d0e91c7",
+                  "src": "postman-cloud:///1f190fe7-9b6c-44b0-98f2-e380b73a35d3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Sucesso - Multipart + Foto)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "João Silva",
+                      "type": "text",
+                      "uuid": "92eb9a4e-340f-47ee-8ed9-0d60ca4cc073"
+                    },
+                    {
+                      "key": "email",
+                      "value": "joao@email.com",
+                      "type": "text",
+                      "uuid": "170812ee-c05e-4437-bc27-ab8b0ac9fffb"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "63bab53d-dd12-4a38-8b8f-63a87b9ab8aa"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "12345678901",
+                      "type": "text",
+                      "uuid": "bf2f5b6e-e0ad-44a4-bbbf-e430eb142f3c"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11999999999",
+                      "type": "text",
+                      "uuid": "dda64811-122c-41fe-a9a9-8ec8686f34b9"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "900a258b-99c8-44e6-9b34-565b3d0e91c7",
+                      "src": "postman-cloud:///1f190fe7-9b6c-44b0-98f2-e380b73a35d3"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "155"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9b-y542SDTkwH6CX9fEKVDlmkljobw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 18:54:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 22,\n    \"name\": \"João Silva\",\n    \"email\": \"joao@email.com\",\n    \"cpf\": \"12345678901\",\n    \"contato\": \"11999999999\",\n    \"foto\": \"uploads/photos/1785956075092_foto_perfil_a.jpg\"\n}"
+            },
+            {
+              "name": "(Sem Name - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "",
+                      "type": "text",
+                      "uuid": "92eb9a4e-340f-47ee-8ed9-0d60ca4cc073"
+                    },
+                    {
+                      "key": "email",
+                      "value": "maria@email.com",
+                      "type": "text",
+                      "uuid": "170812ee-c05e-4437-bc27-ab8b0ac9fffb"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "63bab53d-dd12-4a38-8b8f-63a87b9ab8aa"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "98765432100",
+                      "type": "text",
+                      "uuid": "bf2f5b6e-e0ad-44a4-bbbf-e430eb142f3c"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11888888888",
+                      "type": "text",
+                      "uuid": "dda64811-122c-41fe-a9a9-8ec8686f34b9"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "900a258b-99c8-44e6-9b34-565b3d0e91c7",
+                      "src": "postman-cloud:///1f190ffa-9fa2-4800-869e-9864f6f8d263"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "99"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"63-5QaQ4JVeoaHkA7JMWroYboFIbPo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 18:58:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"name\": {\n                \"errors\": [\n                    \"name deve ter no mínimo 3 caracteres\"\n                ]\n            }\n        }\n    }\n}"
+            },
+            {
+              "name": "(Email Duplicado - Erro 409)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "João Silva",
+                      "type": "text",
+                      "uuid": "92eb9a4e-340f-47ee-8ed9-0d60ca4cc073"
+                    },
+                    {
+                      "key": "email",
+                      "value": "joao@email.com",
+                      "type": "text",
+                      "uuid": "170812ee-c05e-4437-bc27-ab8b0ac9fffb"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "63bab53d-dd12-4a38-8b8f-63a87b9ab8aa"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "11111111111",
+                      "type": "text",
+                      "uuid": "bf2f5b6e-e0ad-44a4-bbbf-e430eb142f3c"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11777777777",
+                      "type": "text",
+                      "uuid": "dda64811-122c-41fe-a9a9-8ec8686f34b9"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "900a258b-99c8-44e6-9b34-565b3d0e91c7",
+                      "src": "postman-cloud:///1f190fe7-9b6c-44b0-98f2-e380b73a35d3"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "35"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"23-QrR48GpDzUayT4n1afragikAsq0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 18:59:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"E-mail já cadastrado\"\n}"
+            },
+            {
+              "name": "(CPF Inválido - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Pedro Santos",
+                      "type": "text",
+                      "uuid": "92eb9a4e-340f-47ee-8ed9-0d60ca4cc073"
+                    },
+                    {
+                      "key": "email",
+                      "value": "pedro@email.com",
+                      "type": "text",
+                      "uuid": "170812ee-c05e-4437-bc27-ab8b0ac9fffb"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "63bab53d-dd12-4a38-8b8f-63a87b9ab8aa"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "123",
+                      "type": "text",
+                      "uuid": "bf2f5b6e-e0ad-44a4-bbbf-e430eb142f3c"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11666666666",
+                      "type": "text",
+                      "uuid": "dda64811-122c-41fe-a9a9-8ec8686f34b9"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "900a258b-99c8-44e6-9b34-565b3d0e91c7",
+                      "src": "postman-cloud:///1f190fe7-9b6c-44b0-98f2-e380b73a35d3"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"57-/s+r5OQbAVarCw87yWan+9uVhvc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:00:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"cpf\": {\n                \"errors\": [\n                    \"cpf deve ter 11 caracteres\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD User - Read",
+      "item": [
+        {
+          "name": "User Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/user/abc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "abc"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(ID Válido com Token)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "169"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a9-67hU649JIAW/AYiUvuthRIH4pXA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:54:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 22,\n    \"name\": \"João Silva\",\n    \"email\": \"joao@email.com\",\n    \"cpf\": \"12345678901\",\n    \"contato\": \"11999999999\",\n    \"foto\": \"uploads/photos/1785956075092_foto_perfil_a.jpg\",\n    \"produtos\": []\n}"
+            },
+            {
+              "name": "(ID Inexistente - Erro 404)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-q5EB/l8aCBEx230hpqL6vwYFoYM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:55:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuário não encontrado\"\n}"
+            },
+            {
+              "name": "(ID Formato Inválido - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/abc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "abc"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"57-vlsq77IWDl0Qpx/8P3tU7uG6lyg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:56:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"userId\": {\n                \"errors\": [\n                    \"Formato de id inválido\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD User - Update",
+      "item": [
+        {
+          "name": "User Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "teste",
+                  "type": "text",
+                  "uuid": "90e9f264-29ac-4470-ba43-363c9602f2ab"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/user/abc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "abc"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Alterar Nome + Foto)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Nome Alterado",
+                      "type": "text",
+                      "uuid": "90e9f264-29ac-4470-ba43-363c9602f2ab"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "1a829f7f-7514-4e98-8f4d-a2814efc36a2",
+                      "src": "postman-cloud:///1f190ffa-9fa2-4800-869e-9864f6f8d263"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "157"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9d-jRa/brpPEfViI6Y4qV6O+4UqaI0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:58:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 22,\n    \"name\": \"Nome Alterado\",\n    \"email\": \"joao@email.com\",\n    \"cpf\": \"12345678901\",\n    \"contato\": \"11999999999\",\n    \"foto\": \"uploads/photos/1785959919952_foto_perfil_b.jpg\"\n}"
+            },
+            {
+              "name": "(ID Inválido - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "teste",
+                      "type": "text",
+                      "uuid": "90e9f264-29ac-4470-ba43-363c9602f2ab"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/abc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "abc"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"57-vlsq77IWDl0Qpx/8P3tU7uG6lyg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:59:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"userId\": {\n                \"errors\": [\n                    \"Formato de id inválido\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD User - Delete",
+      "item": [
+        {
+          "name": "User Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/user/23",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "23"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Inexistente - Erro 404)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-q5EB/l8aCBEx230hpqL6vwYFoYM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 20:05:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuário não encontrado\"\n}"
+            },
+            {
+              "name": "(Sucesso Delete)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/23",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "23"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"39-J9ZyrdR/5rXuN6E7Rf1UnJT0Qr8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 20:10:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Autenticação — Login",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"naoexiste@email.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3333/user/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Credenciais Corretas)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"joao@email.com\",\r\n  \"password\": \"senha123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "964"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c4-MfyDzV2ebnvQ9ZlVzgADYSegajM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 19:48:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"id\": 22,\n        \"name\": \"João Silva\",\n        \"email\": \"joao@email.com\",\n        \"cpf\": \"12345678901\",\n        \"contato\": \"11999999999\",\n        \"foto\": \"uploads/photos/1785956075092_foto_perfil_a.jpg\"\n    },\n    \"token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI\"\n}"
+            },
+            {
+              "name": "(Senha Errada - Erro 401)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"joao@email.com\",\r\n  \"password\": \"senha_errada\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-y/Av8AZx9fUjIH8VYqWoT1RzbUE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 20:11:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Email ou senha incorreta\"\n}"
+            },
+            {
+              "name": "(Sem Password - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"joao@email.com\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "90"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5a-iex9Yzf4KkWgY1HK9Em8SGY7hXY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 20:12:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"password\": {\n                \"errors\": [\n                    \"password deve ser string\"\n                ]\n            }\n        }\n    }\n}"
+            },
+            {
+              "name": "(Email Inexistente - Erro 401)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"naoexiste@email.com\",\r\n  \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-y/Av8AZx9fUjIH8VYqWoT1RzbUE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 05 Aug 2026 20:12:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Email ou senha incorreta\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Product — Create",
+      "item": [
+        {
+          "name": "Product Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Fone de Ouvido",
+                  "type": "text",
+                  "uuid": "17966b4b-36b4-4c84-ad09-0b3f951608d2"
+                },
+                {
+                  "key": "descricao",
+                  "value": "Fone Bluetooth JBL",
+                  "type": "text",
+                  "uuid": "d72af3ff-25e8-4334-b1f9-823662d48faf"
+                },
+                {
+                  "key": "preco",
+                  "value": "200.00",
+                  "type": "text",
+                  "uuid": "f9294dcf-2cca-4f27-98f5-62fb21f7a626"
+                },
+                {
+                  "key": "avaliacao",
+                  "value": "3.5",
+                  "type": "text",
+                  "uuid": "2aac72ff-1d3c-47f7-8381-7da70ea0bfa5"
+                },
+                {
+                  "key": "userId",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "460a1cbf-c16a-4a5d-8aae-3139e59c062b"
+                },
+                {
+                  "key": "imagem",
+                  "type": "file",
+                  "uuid": "b0e27e7d-6224-4596-9bc6-afbd87216d96",
+                  "src": "postman-cloud:///1f1910ae-fcd3-46a0-a744-6dfaccbf6b4e"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Eletrônicos",
+                  "type": "text",
+                  "uuid": "ab992a3a-719f-446f-a2e3-e8a1ab6a3a8c"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Sucesso - Multipart + Token)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Smartphone",
+                      "type": "text",
+                      "uuid": "17966b4b-36b4-4c84-ad09-0b3f951608d2"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Modelo X topo de linha",
+                      "type": "text",
+                      "uuid": "d72af3ff-25e8-4334-b1f9-823662d48faf"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "1500.00",
+                      "type": "text",
+                      "uuid": "f9294dcf-2cca-4f27-98f5-62fb21f7a626"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "4.5",
+                      "type": "text",
+                      "uuid": "2aac72ff-1d3c-47f7-8381-7da70ea0bfa5"
+                    },
+                    {
+                      "key": "imagem",
+                      "type": "file",
+                      "uuid": "b0e27e7d-6224-4596-9bc6-afbd87216d96",
+                      "src": "postman-cloud:///1f1910ae-fcd3-46a0-a744-6dfaccbf6b4e"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "ab992a3a-719f-446f-a2e3-e8a1ab6a3a8c"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "203"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cb-+THCRqodInAC3048aZqD2MAa+ZM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:40:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 22,\n    \"name\": \"Smartphone\",\n    \"descricao\": \"Modelo X topo de linha\",\n    \"imagem\": \"uploads/products/1786034435280_celular_imagem.jpeg\",\n    \"preco\": 1500,\n    \"avaliacao\": 4.5,\n    \"categoria\": \"Eletrônicos\",\n    \"userId\": 22\n}"
+            },
+            {
+              "name": "(Sem Name - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "",
+                      "type": "text",
+                      "uuid": "17966b4b-36b4-4c84-ad09-0b3f951608d2"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Modelo X",
+                      "type": "text",
+                      "uuid": "d72af3ff-25e8-4334-b1f9-823662d48faf"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "1500.00",
+                      "type": "text",
+                      "uuid": "f9294dcf-2cca-4f27-98f5-62fb21f7a626"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "4.5",
+                      "type": "text",
+                      "uuid": "2aac72ff-1d3c-47f7-8381-7da70ea0bfa5"
+                    },
+                    {
+                      "key": "imagem",
+                      "type": "file",
+                      "uuid": "b0e27e7d-6224-4596-9bc6-afbd87216d96",
+                      "src": "postman-cloud:///1f1910ae-fcd3-46a0-a744-6dfaccbf6b4e"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "ab992a3a-719f-446f-a2e3-e8a1ab6a3a8c"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "99"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"63-5QaQ4JVeoaHkA7JMWroYboFIbPo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:41:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"name\": {\n                \"errors\": [\n                    \"name deve ter no mínimo 3 caracteres\"\n                ]\n            }\n        }\n    }\n}"
+            },
+            {
+              "name": "(Preço Negativo - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Notebook",
+                      "type": "text",
+                      "uuid": "17966b4b-36b4-4c84-ad09-0b3f951608d2"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Notebook Dell Inspiron",
+                      "type": "text",
+                      "uuid": "d72af3ff-25e8-4334-b1f9-823662d48faf"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "-50",
+                      "type": "text",
+                      "uuid": "f9294dcf-2cca-4f27-98f5-62fb21f7a626"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "4.0",
+                      "type": "text",
+                      "uuid": "2aac72ff-1d3c-47f7-8381-7da70ea0bfa5"
+                    },
+                    {
+                      "key": "imagem",
+                      "type": "file",
+                      "uuid": "b0e27e7d-6224-4596-9bc6-afbd87216d96",
+                      "src": "postman-cloud:///1f1910ae-fcd3-46a0-a744-6dfaccbf6b4e"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "ab992a3a-719f-446f-a2e3-e8a1ab6a3a8c"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "92"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5c-/eAHpjZ9S31kgRi7aYtaDc3ZXP8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:42:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"preco\": {\n                \"errors\": [\n                    \"preço não pode ser negativo\"\n                ]\n            }\n        }\n    }\n}"
+            },
+            {
+              "name": "(Avaliação > 5 - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Tablet",
+                      "type": "text",
+                      "uuid": "17966b4b-36b4-4c84-ad09-0b3f951608d2"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Tablet Samsung Galaxy",
+                      "type": "text",
+                      "uuid": "d72af3ff-25e8-4334-b1f9-823662d48faf"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "800.00",
+                      "type": "text",
+                      "uuid": "f9294dcf-2cca-4f27-98f5-62fb21f7a626"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "6",
+                      "type": "text",
+                      "uuid": "2aac72ff-1d3c-47f7-8381-7da70ea0bfa5"
+                    },
+                    {
+                      "key": "imagem",
+                      "type": "file",
+                      "uuid": "b0e27e7d-6224-4596-9bc6-afbd87216d96",
+                      "src": "postman-cloud:///1f1910ae-fcd3-46a0-a744-6dfaccbf6b4e"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "ab992a3a-719f-446f-a2e3-e8a1ab6a3a8c"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"68-ODHhUD/R/z1Tc0M+SY9YxzgDOU0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:42:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"avaliacao\": {\n                \"errors\": [\n                    \"avaliação não pode ser maior que 5\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Product — Read",
+      "item": [
+        {
+          "name": "Product Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/product/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "999"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Listar Todos os Produtos)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "538"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"21a-3Pcnd3ejUR/3zUR3OThGjayUyMk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:44:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"idProduto\": 22,\n        \"name\": \"Smartphone\",\n        \"descricao\": \"Modelo X topo de linha\",\n        \"imagem\": \"uploads/products/1786034435280_celular_imagem.jpeg\",\n        \"preco\": 1500,\n        \"avaliacao\": 4.5,\n        \"categoria\": \"Eletrônicos\",\n        \"userId\": 22,\n        \"user\": {\n            \"id\": 22,\n            \"name\": \"Nome Alterado\",\n            \"email\": \"joao@email.com\"\n        }\n    },\n    {\n        \"idProduto\": 23,\n        \"name\": \"Fone de Ouvido\",\n        \"descricao\": \"Fone Bluetooth JBL\",\n        \"imagem\": \"uploads/products/1786034600143_celular_imagem.jpeg\",\n        \"preco\": 200,\n        \"avaliacao\": 3.5,\n        \"categoria\": \"Eletrônicos\",\n        \"userId\": 22,\n        \"user\": {\n            \"id\": 22,\n            \"name\": \"Nome Alterado\",\n            \"email\": \"joao@email.com\"\n        }\n    }\n]"
+            },
+            {
+              "name": "(ID Válido)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "268"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10c-OJnDGT2bACHvWQRsW8hpmXYEp8Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:45:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 22,\n    \"name\": \"Smartphone\",\n    \"descricao\": \"Modelo X topo de linha\",\n    \"imagem\": \"uploads/products/1786034435280_celular_imagem.jpeg\",\n    \"preco\": 1500,\n    \"avaliacao\": 4.5,\n    \"categoria\": \"Eletrônicos\",\n    \"userId\": 22,\n    \"user\": {\n        \"id\": 22,\n        \"name\": \"Nome Alterado\",\n        \"email\": \"joao@email.com\"\n    }\n}"
+            },
+            {
+              "name": "(ID Inexistente - Erro 404)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "37"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"25-Hw7DxyX5xx7dof4wTnH9zbPJkWw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:46:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Produto não encontrado\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Product — Update e Delete",
+      "item": [
+        {
+          "name": "Product Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Produto Alterado",
+                  "type": "text",
+                  "uuid": "23775d51-8a7f-4d6b-adb1-24a5945a35f9"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Informática",
+                  "type": "text",
+                  "uuid": "dcef802a-bd56-422f-bb5c-2e1a0619d6b1"
+                },
+                {
+                  "key": "imagem",
+                  "type": "file",
+                  "uuid": "e86cf018-47a6-4900-8635-1bc3bad6132d",
+                  "src": "postman-cloud:///1f191b6a-c888-46e0-acc2-5e84b4d9bec0"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Alterar Nome + Imagem)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Produto Alterado",
+                      "type": "text",
+                      "uuid": "23775d51-8a7f-4d6b-adb1-24a5945a35f9"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Informática",
+                      "type": "text",
+                      "uuid": "dcef802a-bd56-422f-bb5c-2e1a0619d6b1"
+                    },
+                    {
+                      "key": "imagem",
+                      "type": "file",
+                      "uuid": "e86cf018-47a6-4900-8635-1bc3bad6132d",
+                      "src": "postman-cloud:///1f191b6a-c888-46e0-acc2-5e84b4d9bec0"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "210"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d2-svfgHAqKSRTm6vYqItOvXfUPFyY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:47:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 22,\n    \"name\": \"Produto Alterado\",\n    \"descricao\": \"Modelo X topo de linha\",\n    \"imagem\": \"uploads/products/1786034879976_celular_imagem_2.jpg\",\n    \"preco\": 1500,\n    \"avaliacao\": 4.5,\n    \"categoria\": \"Informática\",\n    \"userId\": 22\n}"
+            }
+          ]
+        },
+        {
+          "name": "Product Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/product/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "999"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Deletar Existente)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/23",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "23"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ca-ZatNpfLuVg6I9yhZTqAmqpRLBTs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:49:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "(Inexistente - Erro 404)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "37"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"25-Hw7DxyX5xx7dof4wTnH9zbPJkWw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:49:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Produto não encontrado\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Multer — Upload",
+      "item": [
+        {
+          "name": "Uploader",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Ana Lima",
+                  "type": "text",
+                  "uuid": "47c8b9a3-7fcc-4b88-9aa5-334063b3b852"
+                },
+                {
+                  "key": "email",
+                  "value": "ana@email.com",
+                  "type": "text",
+                  "uuid": "175d8517-5edd-450f-8365-0482f27170db"
+                },
+                {
+                  "key": "password",
+                  "value": "senha123",
+                  "type": "text",
+                  "uuid": "6fd3ee63-f6d4-45bf-bb7f-55bf4f4a87c3"
+                },
+                {
+                  "key": "cpf",
+                  "value": "33333333333",
+                  "type": "text",
+                  "uuid": "cab8449f-f3bf-449b-bcef-1a00f6eac69b"
+                },
+                {
+                  "key": "contato",
+                  "value": "11444444444",
+                  "type": "text",
+                  "uuid": "102f0d80-9f02-46f5-9c08-e3ed5f7a4b37"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Validar Upload na Pasta uploads/)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Carlos Souza",
+                      "type": "text",
+                      "uuid": "47c8b9a3-7fcc-4b88-9aa5-334063b3b852"
+                    },
+                    {
+                      "key": "email",
+                      "value": "carlos@email.com",
+                      "type": "text",
+                      "uuid": "175d8517-5edd-450f-8365-0482f27170db"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "6fd3ee63-f6d4-45bf-bb7f-55bf4f4a87c3"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "22222222222",
+                      "type": "text",
+                      "uuid": "cab8449f-f3bf-449b-bcef-1a00f6eac69b"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11555555555",
+                      "type": "text",
+                      "uuid": "102f0d80-9f02-46f5-9c08-e3ed5f7a4b37"
+                    },
+                    {
+                      "key": "foto",
+                      "type": "file",
+                      "uuid": "d9b94e52-fbd6-4718-bb11-2c081849d997",
+                      "src": "postman-cloud:///1f190ffa-9fa2-4800-869e-9864f6f8d263"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "158"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9e-wa36IMAe1f0e7P/0GivWuxfA9jI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:52:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 24,\n    \"name\": \"Carlos Souza\",\n    \"email\": \"carlos@email.com\",\n    \"cpf\": \"22222222222\",\n    \"contato\": \"11555555555\",\n    \"foto\": \"uploads/photos/1786035142018_foto_perfil_b.jpg\"\n}"
+            },
+            {
+              "name": "(Validar Upload Opcional/Sem Foto)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Ana Lima",
+                      "type": "text",
+                      "uuid": "47c8b9a3-7fcc-4b88-9aa5-334063b3b852"
+                    },
+                    {
+                      "key": "email",
+                      "value": "ana@email.com",
+                      "type": "text",
+                      "uuid": "175d8517-5edd-450f-8365-0482f27170db"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "6fd3ee63-f6d4-45bf-bb7f-55bf4f4a87c3"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "33333333333",
+                      "type": "text",
+                      "uuid": "cab8449f-f3bf-449b-bcef-1a00f6eac69b"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11444444444",
+                      "type": "text",
+                      "uuid": "102f0d80-9f02-46f5-9c08-e3ed5f7a4b37"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "107"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6b-fafxFVEx6TtsoydTZDMPlCaZCFc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:53:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 25,\n    \"name\": \"Ana Lima\",\n    \"email\": \"ana@email.com\",\n    \"cpf\": \"33333333333\",\n    \"contato\": \"11444444444\",\n    \"foto\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Autorização e Segurança",
+      "item": [
+        {
+          "name": "Auth",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Sem Token - Erro 401)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:55:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            },
+            {
+              "name": "(Token Inválido - Erro 401)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:56:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            }
+          ]
+        },
+        {
+          "name": "Product Auth",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Produto Sem Auth",
+                  "type": "text",
+                  "uuid": "c8b98aeb-1b21-4391-992f-9ee14ad8ecc4"
+                },
+                {
+                  "key": "descricao",
+                  "value": "Teste sem autenticacao",
+                  "type": "text",
+                  "uuid": "6d957393-0872-47d1-a171-e9446ce97694"
+                },
+                {
+                  "key": "preco",
+                  "value": "100.00",
+                  "type": "text",
+                  "uuid": "61958f69-e220-4a8d-acda-5a895ba65ceb"
+                },
+                {
+                  "key": "avaliacao",
+                  "value": "3.0",
+                  "type": "text",
+                  "uuid": "c607789d-45a4-41c6-9c3d-bff9e3f4d182"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Eletrônicos",
+                  "type": "text",
+                  "uuid": "f63e7456-0594-4611-98a2-bab99b5c7088"
+                },
+                {
+                  "key": "userId",
+                  "value": "22",
+                  "type": "text",
+                  "uuid": "4209e91b-f55b-47ae-af38-15c2ccc60db6"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Sem Token - Erro 401)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Produto Sem Auth",
+                      "type": "text",
+                      "uuid": "c8b98aeb-1b21-4391-992f-9ee14ad8ecc4"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Teste sem autenticacao",
+                      "type": "text",
+                      "uuid": "6d957393-0872-47d1-a171-e9446ce97694"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "100.00",
+                      "type": "text",
+                      "uuid": "61958f69-e220-4a8d-acda-5a895ba65ceb"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "3.0",
+                      "type": "text",
+                      "uuid": "c607789d-45a4-41c6-9c3d-bff9e3f4d182"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "f63e7456-0594-4611-98a2-bab99b5c7088"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 16:59:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Estudos de Caso",
+      "item": [
+        {
+          "name": "(SQL Injection no Name)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "'; DROP TABLE users; --",
+                  "type": "text",
+                  "uuid": "12cc131c-a856-4be9-9b1f-94850646fcfa"
+                },
+                {
+                  "key": "email",
+                  "value": "hack@email.com",
+                  "type": "text",
+                  "uuid": "0c376347-d331-4f33-999a-51f6c1d8494d"
+                },
+                {
+                  "key": "password",
+                  "value": "senha123",
+                  "type": "text",
+                  "uuid": "e147671d-1400-45ff-b0e3-0fe22e95ba99"
+                },
+                {
+                  "key": "cpf",
+                  "value": "44444444444",
+                  "type": "text",
+                  "uuid": "a57c3805-aa51-484e-8a9f-b867d5a66ca6"
+                },
+                {
+                  "key": "contato",
+                  "value": "11333333333",
+                  "type": "text",
+                  "uuid": "59c47274-3023-4376-82d8-c5fcf555436c"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(SQL Injection no Name)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "'; DROP TABLE users; --",
+                      "type": "text",
+                      "uuid": "12cc131c-a856-4be9-9b1f-94850646fcfa"
+                    },
+                    {
+                      "key": "email",
+                      "value": "hack@email.com",
+                      "type": "text",
+                      "uuid": "0c376347-d331-4f33-999a-51f6c1d8494d"
+                    },
+                    {
+                      "key": "password",
+                      "value": "senha123",
+                      "type": "text",
+                      "uuid": "e147671d-1400-45ff-b0e3-0fe22e95ba99"
+                    },
+                    {
+                      "key": "cpf",
+                      "value": "44444444444",
+                      "type": "text",
+                      "uuid": "a57c3805-aa51-484e-8a9f-b867d5a66ca6"
+                    },
+                    {
+                      "key": "contato",
+                      "value": "11333333333",
+                      "type": "text",
+                      "uuid": "59c47274-3023-4376-82d8-c5fcf555436c"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "123"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7b-Vxlj+RUrzbnlNQJ5u3sJkITUxbk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 17:03:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 26,\n    \"name\": \"'; DROP TABLE users; --\",\n    \"email\": \"hack@email.com\",\n    \"cpf\": \"44444444444\",\n    \"contato\": \"11333333333\",\n    \"foto\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "(userId body ignorado - Usa token - 201)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Ioio",
+                  "type": "text",
+                  "uuid": "e3050e56-e6e8-44c7-accd-420e4e236c4e"
+                },
+                {
+                  "key": "descricao",
+                  "value": "Produto muito legal",
+                  "type": "text",
+                  "uuid": "3e3728fa-4b3f-405e-abc9-de88a9770c66"
+                },
+                {
+                  "key": "preco",
+                  "value": "50.00",
+                  "type": "text",
+                  "uuid": "31693bba-d0ec-4623-8446-d6c27f8ce7d9"
+                },
+                {
+                  "key": "avaliacao",
+                  "value": "2.0",
+                  "type": "text",
+                  "uuid": "a8c51d8c-da00-4247-b2fe-93a2546ba5e8"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Eletrônicos",
+                  "type": "text",
+                  "uuid": "6c528a57-5f16-47d2-abd2-56a033780588"
+                },
+                {
+                  "key": "userId",
+                  "value": "999",
+                  "type": "text",
+                  "uuid": "bdb22dd7-8595-4f4c-bd90-15782ee35d17"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(userId body ignorado - Usa token - 201)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Ioio",
+                      "type": "text",
+                      "uuid": "e3050e56-e6e8-44c7-accd-420e4e236c4e"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Produto muito legal",
+                      "type": "text",
+                      "uuid": "3e3728fa-4b3f-405e-abc9-de88a9770c66"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "50.00",
+                      "type": "text",
+                      "uuid": "31693bba-d0ec-4623-8446-d6c27f8ce7d9"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "2.0",
+                      "type": "text",
+                      "uuid": "a8c51d8c-da00-4247-b2fe-93a2546ba5e8"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "6c528a57-5f16-47d2-abd2-56a033780588"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "999",
+                      "type": "text",
+                      "uuid": "bdb22dd7-8595-4f4c-bd90-15782ee35d17"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "142"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8e-SwIehmXPX2RZQson2tQb/QxY5pQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 22:05:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 28,\n    \"name\": \"Ioio\",\n    \"descricao\": \"Produto muito legal\",\n    \"imagem\": null,\n    \"preco\": 50,\n    \"avaliacao\": 2,\n    \"categoria\": \"Eletrônicos\",\n    \"userId\": 22\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Deletar Todos - Reset)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg2MDQxOTE0LCJleHAiOjE3ODY2NDY3MTR9.tAv2VwEoPjT2nSuzjBE-RFl3vwHxDNCK51uMYz4Yv1jWvYRuHiI1MKf53gXgPECIEEKNO-nqAW8En9HWpaucxZbT2ZuUJPzS3QsiiIJJRBu7xaEYVEp30l2I3yeDUgX_iJCoBsKZzxLqmZJK19JzqgScE9x5RPHd9FCwV-Caf4tfTWr6276sQz9frnwwH3ewJg_irxlvJjbaDT8jth5rCMwn-v4S7KPuEdblbQ52uzSElgIi15NRgWIYqmbgWkhARSZrIsW1pzCp8Z-dims128vJ71xJUPf85kTuge1GYJ041v0pfaBhnSUHiW1gNKHDDkuwbJp2xtK_jCIhLY7WyiKW0rYGneGVY-LRqtRgJZap7gZ_Ju3XKvOu64NefdGyGhfZMDk3ZNyPVzoCpsXzxKzFF7Gk1a4ij-9Ph1UhCNKLgWFwKffo1u9OJwvAbPYGyaXsyXNGo0Oo5UjzRzrRWpPjGNhFZobkGoH7fIysIC0pbJkMobWIKevRaN9kqjTL2VLgAB_DjAHZijh2nLJbzwfDDKivU_3UoFIuFujjrdnS5dpthf4xKd4sfUbCZTxTb2Tsb4vOq9i45SMlRKE4jA9pBnJS28Tid4Te3iWu1EIemjBATurbhYGpKlcWUs4sDo_YkLKJJSCORjkqOv9iLvoTL3HlxIAN9RsN-2NL5FQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Deletar Todos - Reset)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "11"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b-O/8g2/aV0rjihFyRXiCxNYHH0pg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 22:23:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 4\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Update com body vazio)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "http://localhost:3333/user/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Update com body vazio)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "22"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "76"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4c-ltCn/bFihDAGHkV3eVR4PFSPYXI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 17:22:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [\n            \"Invalid input: expected object, received undefined\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Login com body vazio)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3333/user/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Login com body vazio)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "139"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8b-lMaQO+6dAthaw1GeCbfYiLblawg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 17:18:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"email\": {\n                \"errors\": [\n                    \"Email ou Senha inválidos\"\n                ]\n            },\n            \"password\": {\n                \"errors\": [\n                    \"password deve ser string\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "(ID Zero)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/user/0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "0"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(ID Zero)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/0",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "0"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-q5EB/l8aCBEx230hpqL6vwYFoYM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 17:19:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuário não encontrado\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Estudos de Caso — Tipos e Autorização",
+      "item": [
+        {
+          "name": "(Preço como String - Erro 400 Zod)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Produto Teste Tipo",
+                  "type": "text",
+                  "uuid": "07dab97e-1ed2-470a-8bb9-93168b42e082"
+                },
+                {
+                  "key": "descricao",
+                  "value": "Testando tipo do preco",
+                  "type": "text",
+                  "uuid": "1fb000fe-5f8e-48dc-8962-098064cb7274"
+                },
+                {
+                  "key": "name",
+                  "value": "\"1500\"",
+                  "type": "text",
+                  "uuid": "ee7c38b4-2a2e-4cc6-9b85-891bbb24033a"
+                },
+                {
+                  "key": "avaliacao",
+                  "value": "4.0",
+                  "type": "text",
+                  "uuid": "165517c2-6cda-4ac3-8c59-4ab65885f6ed"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Eletrônicos",
+                  "type": "text",
+                  "uuid": "f2b31448-cd82-411e-9b89-aec19e6295ee"
+                },
+                {
+                  "key": "userId",
+                  "value": "22",
+                  "type": "text",
+                  "uuid": "01f869fd-34d7-4d12-b825-6d4426158d02"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Preço como String - Erro 400 Zod)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Produto Teste Tipo",
+                      "type": "text",
+                      "uuid": "07dab97e-1ed2-470a-8bb9-93168b42e082"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Testando tipo do preco",
+                      "type": "text",
+                      "uuid": "1fb000fe-5f8e-48dc-8962-098064cb7274"
+                    },
+                    {
+                      "key": "name",
+                      "value": "\"1500\"",
+                      "type": "text",
+                      "uuid": "ee7c38b4-2a2e-4cc6-9b85-891bbb24033a"
+                    },
+                    {
+                      "key": "avaliacao",
+                      "value": "4.0",
+                      "type": "text",
+                      "uuid": "165517c2-6cda-4ac3-8c59-4ab65885f6ed"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "f2b31448-cd82-411e-9b89-aec19e6295ee"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "168"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a8-xGXZDB3IiIEVqlb7roXU1hCiaR0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 17:16:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"errors\": {\n        \"errors\": [],\n        \"properties\": {\n            \"name\": {\n                \"errors\": [\n                    \"name deve ser string\",\n                    \"name deve ter no mínimo 3 caracteres\"\n                ]\n            },\n            \"preco\": {\n                \"errors\": [\n                    \"preço deve ser number\"\n                ]\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Acessar com Token de Outro Usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/user/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "24"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Acessar com Token de Outro Usuário)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/24",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "24"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "152"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"98-gHY1YfnYsH1Q/D0WYfFYmUTU4XM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:08:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 24,\n    \"name\": \"Carlos Souza\",\n    \"email\": \"carlos@email.com\",\n    \"contato\": \"11555555555\",\n    \"foto\": \"uploads/photos/1786035142018_foto_perfil_b.jpg\",\n    \"produtos\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Editar dados de outro usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0yiu}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "type": "text",
+                  "uuid": "a0a1384c-2090-4d26-aef5-f8a148bae4cd",
+                  "value": "Hacker"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/user/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "24"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Editar dados de outro usuário)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Hacker",
+                      "type": "text",
+                      "uuid": "a0a1384c-2090-4d26-aef5-f8a148bae4cd"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/user/24",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "24"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "76"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4c-AkCrxg11tmNkhc17cQupXKxO9Js\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:34:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Acesso negado: você não pode acessar dados de outro usuário\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Deletar usuário de outro usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg1OTU5Mjg3LCJleHAiOjE3ODY1NjQwODd9.u6zMeYC223P5ke2-t2zarDQSiNdbu47VcWTwBUN_2LlNiFO80UC8VoWjG5PSwYzWkWgyr7H8yoB7tZmUA0BzxP2ambu-tlmDTLoVT6Hb2IGP8EAvc4RdypyckIZDzKZdncGCt51G00i1b33j4YvHf34FmQlCPiJMKDAd9plGNzoq7q0HUpIVZrKCpfoa8u7nTaTm8okUeGqsk3oQvu5He1q504ktoASMeIKZa7_ePSnWVyoLrOlVoUHynxYYalq_rg1pab_FUfmKKyO934bv7utZuwqiJm_Mm7Dyl_tE9wKwzOcRS-sjOaPGaseYUGsQeG9cb4rJMPUCaqrWEwFRSnJ_hQGg8ZDWZ85ABDQDQCNtYA-TJU3A6G9o8EXkDzS7gl4RvN12a8NEkFjJjeO3uzYLXrsxWUPlGFzmGbehMhBYAQx9wv2qIpaiI0qMv_tDZHk7VfMY-3VPVxQGHljuO0j99QMBCJYYeRGqCavPW5qbf65y3KTZoGTPku3WuKeSHSViAtaYXlTXmxo0Qwy2GGg0ZsdobjJGzJQMqQLLJDLlfHQ6TOWEXLyqtMv1YCh9W2FOOr7jahtEOiuEN31ePN-SoJdaQ6qKAlXvCAujlUB9tsCoX6QwwoWVSYto1BAu3D2MyqNjRqlQurlLo9U53mJ0CBqTmzd7daGyImmCOZI  ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/user/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "user",
+                "24"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Deletar usuário de outro usuário)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/user/24",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "user",
+                    "24"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "76"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4c-AkCrxg11tmNkhc17cQupXKxO9Js\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:36:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Acesso negado: você não pode acessar dados de outro usuário\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Ver produto de outro usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjI0fSwiaWF0IjoxNzg2MDM3NDk4LCJleHAiOjE3ODY2NDIyOTh9.SyBXV70HfxAcjhDNI8TruYISwKS7NYBcFc_WbkXJxhze6Hgi1SYvqfx3Y9steAORpJartlwfUGSK0OgvxeCfn4NqbEqrE7mxXuIQY3sw6H7YQ3ic111fNSABKxYZGPYxm8Up2Ec-S3v2XaujZdy067UcZWI93eRi5z_wzxtLw1VQgCDHZ_JVicLIItOQsN1I9Jz9OoKut6Mq5OLi_s2N-RBkHbycF8QFiCyUKIY8D6za1DDuwqu-35181uIVwj1JJl81DwIXl-sm25wAKCidNDGLhd6qkBKXY02xYTxggczjtPuBg_Kfr1MI7RMVWm3FV4eqOBEaeZbd9FIn25nKF5c_7jluUDESmvA_gZRdWtnYB1GjiMYn_MZAqKHl1QSDW4M3ZPpta_AGsqYTVttdbuM0ONlPs3jFVwAb0mHQrMTa4NeQn3yIQxJe7xPrqQSPGVwFYRlQLDRQD7WV3xIiXhPt-GtBMit2CMpE3CaFgL-hQsL2brO4TYCF01Fom9Hox2dQSMSLkcZwMRRs9DF6QTRPwEq5dopmfy5EzRFY-3T6f3451H4wSNykeGMyK903-TkFo0AtBYwa1QrWKgSj-xzm7izasBM9dUHZtzhtmTeq1RiVaFLyCytPz3jHA8FVem2gat_zakdB8PiqcxCH9MATd--e9pMG9k-eiReSp4g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/product/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Ver produto de outro usuário)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "355"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"163-5Cl6wP5WOL1UfnMUBlW38GtgUuw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:37:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 22,\n    \"name\": \"Produto Alterado\",\n    \"descricao\": \"Modelo X topo de linha\",\n    \"imagem\": \"uploads/products/1786034879976_celular_imagem_2.jpg\",\n    \"preco\": 1500,\n    \"avaliacao\": 4.5,\n    \"categoria\": \"Informática\",\n    \"userId\": 22,\n    \"user\": {\n        \"id\": 22,\n        \"name\": \"Nome Alterado\",\n        \"email\": \"joao@email.com\",\n        \"contato\": \"11999999999\",\n        \"foto\": \"uploads/photos/1785959919952_foto_perfil_b.jpg\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Editar produto de outro usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjI0fSwiaWF0IjoxNzg2MDM3NDk4LCJleHAiOjE3ODY2NDIyOTh9.SyBXV70HfxAcjhDNI8TruYISwKS7NYBcFc_WbkXJxhze6Hgi1SYvqfx3Y9steAORpJartlwfUGSK0OgvxeCfn4NqbEqrE7mxXuIQY3sw6H7YQ3ic111fNSABKxYZGPYxm8Up2Ec-S3v2XaujZdy067UcZWI93eRi5z_wzxtLw1VQgCDHZ_JVicLIItOQsN1I9Jz9OoKut6Mq5OLi_s2N-RBkHbycF8QFiCyUKIY8D6za1DDuwqu-35181uIVwj1JJl81DwIXl-sm25wAKCidNDGLhd6qkBKXY02xYTxggczjtPuBg_Kfr1MI7RMVWm3FV4eqOBEaeZbd9FIn25nKF5c_7jluUDESmvA_gZRdWtnYB1GjiMYn_MZAqKHl1QSDW4M3ZPpta_AGsqYTVttdbuM0ONlPs3jFVwAb0mHQrMTa4NeQn3yIQxJe7xPrqQSPGVwFYRlQLDRQD7WV3xIiXhPt-GtBMit2CMpE3CaFgL-hQsL2brO4TYCF01Fom9Hox2dQSMSLkcZwMRRs9DF6QTRPwEq5dopmfy5EzRFY-3T6f3451H4wSNykeGMyK903-TkFo0AtBYwa1QrWKgSj-xzm7izasBM9dUHZtzhtmTeq1RiVaFLyCytPz3jHA8FVem2gat_zakdB8PiqcxCH9MATd--e9pMG9k-eiReSp4g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "preco",
+                  "value": "1.00",
+                  "type": "text",
+                  "uuid": "07dd9346-de3d-4762-9a97-066e6fb78dc4"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Editar produto de outro usuário)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "preco",
+                      "value": "1.00",
+                      "type": "text",
+                      "uuid": "07dd9346-de3d-4762-9a97-066e6fb78dc4"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "22"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3f-JMCBWrDb6ug0oP6DP1zPHzxhBWg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:39:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Acesso negado: este produto não pertence a você\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Deletar produto de outro usuário)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjI0fSwiaWF0IjoxNzg2MDM3NDk4LCJleHAiOjE3ODY2NDIyOTh9.SyBXV70HfxAcjhDNI8TruYISwKS7NYBcFc_WbkXJxhze6Hgi1SYvqfx3Y9steAORpJartlwfUGSK0OgvxeCfn4NqbEqrE7mxXuIQY3sw6H7YQ3ic111fNSABKxYZGPYxm8Up2Ec-S3v2XaujZdy067UcZWI93eRi5z_wzxtLw1VQgCDHZ_JVicLIItOQsN1I9Jz9OoKut6Mq5OLi_s2N-RBkHbycF8QFiCyUKIY8D6za1DDuwqu-35181uIVwj1JJl81DwIXl-sm25wAKCidNDGLhd6qkBKXY02xYTxggczjtPuBg_Kfr1MI7RMVWm3FV4eqOBEaeZbd9FIn25nKF5c_7jluUDESmvA_gZRdWtnYB1GjiMYn_MZAqKHl1QSDW4M3ZPpta_AGsqYTVttdbuM0ONlPs3jFVwAb0mHQrMTa4NeQn3yIQxJe7xPrqQSPGVwFYRlQLDRQD7WV3xIiXhPt-GtBMit2CMpE3CaFgL-hQsL2brO4TYCF01Fom9Hox2dQSMSLkcZwMRRs9DF6QTRPwEq5dopmfy5EzRFY-3T6f3451H4wSNykeGMyK903-TkFo0AtBYwa1QrWKgSj-xzm7izasBM9dUHZtzhtmTeq1RiVaFLyCytPz3jHA8FVem2gat_zakdB8PiqcxCH9MATd--e9pMG9k-eiReSp4g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/product/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Deletar produto de outro usuário)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3333/product/22",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product",
+                    "22"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3f-JMCBWrDb6ug0oP6DP1zPHzxhBWg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:40:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Acesso negado: este produto não pertence a você\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Criar produto com userId de outro usuário no body)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg2MDQxOTE0LCJleHAiOjE3ODY2NDY3MTR9.tAv2VwEoPjT2nSuzjBE-RFl3vwHxDNCK51uMYz4Yv1jWvYRuHiI1MKf53gXgPECIEEKNO-nqAW8En9HWpaucxZbT2ZuUJPzS3QsiiIJJRBu7xaEYVEp30l2I3yeDUgX_iJCoBsKZzxLqmZJK19JzqgScE9x5RPHd9FCwV-Caf4tfTWr6276sQz9frnwwH3ewJg_irxlvJjbaDT8jth5rCMwn-v4S7KPuEdblbQ52uzSElgIi15NRgWIYqmbgWkhARSZrIsW1pzCp8Z-dims128vJ71xJUPf85kTuge1GYJ041v0pfaBhnSUHiW1gNKHDDkuwbJp2xtK_jCIhLY7WyiKW0rYGneGVY-LRqtRgJZap7gZ_Ju3XKvOu64NefdGyGhfZMDk3ZNyPVzoCpsXzxKzFF7Gk1a4ij-9Ph1UhCNKLgWFwKffo1u9OJwvAbPYGyaXsyXNGo0Oo5UjzRzrRWpPjGNhFZobkGoH7fIysIC0pbJkMobWIKevRaN9kqjTL2VLgAB_DjAHZijh2nLJbzwfDDKivU_3UoFIuFujjrdnS5dpthf4xKd4sfUbCZTxTb2Tsb4vOq9i45SMlRKE4jA9pBnJS28Tid4Te3iWu1EIemjBATurbhYGpKlcWUs4sDo_YkLKJJSCORjkqOv9iLvoTL3HlxIAN9RsN-2NL5FQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Produto Teste",
+                  "type": "text",
+                  "uuid": "80bda414-6f2f-4b12-98f9-65ad456a7c6d"
+                },
+                {
+                  "key": "descricao",
+                  "value": "Tentando hackear",
+                  "type": "text",
+                  "uuid": "b2cea0e4-62ee-4ff3-81ab-3a2a7830dff0"
+                },
+                {
+                  "key": "preco",
+                  "value": "100.00",
+                  "type": "text",
+                  "uuid": "07226455-3adb-447a-a8fe-1b74f9311b2d"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Eletrônicos",
+                  "type": "text",
+                  "uuid": "cbb64982-d1a6-4188-974c-453f4d619049"
+                },
+                {
+                  "key": "userId",
+                  "value": "999",
+                  "type": "text",
+                  "uuid": "091a3641-7ea0-4b1c-9e45-9c1c88f44b70"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3333/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Criar produto com userId de outro usuário no body)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Produto Teste",
+                      "type": "text",
+                      "uuid": "80bda414-6f2f-4b12-98f9-65ad456a7c6d"
+                    },
+                    {
+                      "key": "descricao",
+                      "value": "Tentando hackear",
+                      "type": "text",
+                      "uuid": "b2cea0e4-62ee-4ff3-81ab-3a2a7830dff0"
+                    },
+                    {
+                      "key": "preco",
+                      "value": "100.00",
+                      "type": "text",
+                      "uuid": "07226455-3adb-447a-a8fe-1b74f9311b2d"
+                    },
+                    {
+                      "key": "categoria",
+                      "value": "Eletrônicos",
+                      "type": "text",
+                      "uuid": "cbb64982-d1a6-4188-974c-453f4d619049"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "999",
+                      "type": "text",
+                      "uuid": "091a3641-7ea0-4b1c-9e45-9c1c88f44b70"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3333/product",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "152"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"98-44eRXZVVsyqjpLA0cCaTWM8ugxQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:45:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"idProduto\": 24,\n    \"name\": \"Produto Teste\",\n    \"descricao\": \"Tentando hackear\",\n    \"imagem\": null,\n    \"preco\": 100,\n    \"avaliacao\": null,\n    \"categoria\": \"Eletrônicos\",\n    \"userId\": 22\n}"
+            }
+          ]
+        },
+        {
+          "name": "(Deletar apenas próprios produtos)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjIyfSwiaWF0IjoxNzg2MDQxOTE0LCJleHAiOjE3ODY2NDY3MTR9.tAv2VwEoPjT2nSuzjBE-RFl3vwHxDNCK51uMYz4Yv1jWvYRuHiI1MKf53gXgPECIEEKNO-nqAW8En9HWpaucxZbT2ZuUJPzS3QsiiIJJRBu7xaEYVEp30l2I3yeDUgX_iJCoBsKZzxLqmZJK19JzqgScE9x5RPHd9FCwV-Caf4tfTWr6276sQz9frnwwH3ewJg_irxlvJjbaDT8jth5rCMwn-v4S7KPuEdblbQ52uzSElgIi15NRgWIYqmbgWkhARSZrIsW1pzCp8Z-dims128vJ71xJUPf85kTuge1GYJ041v0pfaBhnSUHiW1gNKHDDkuwbJp2xtK_jCIhLY7WyiKW0rYGneGVY-LRqtRgJZap7gZ_Ju3XKvOu64NefdGyGhfZMDk3ZNyPVzoCpsXzxKzFF7Gk1a4ij-9Ph1UhCNKLgWFwKffo1u9OJwvAbPYGyaXsyXNGo0Oo5UjzRzrRWpPjGNhFZobkGoH7fIysIC0pbJkMobWIKevRaN9kqjTL2VLgAB_DjAHZijh2nLJbzwfDDKivU_3UoFIuFujjrdnS5dpthf4xKd4sfUbCZTxTb2Tsb4vOq9i45SMlRKE4jA9pBnJS28Tid4Te3iWu1EIemjBATurbhYGpKlcWUs4sDo_YkLKJJSCORjkqOv9iLvoTL3HlxIAN9RsN-2NL5FQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "http://localhost:3333/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "(Deletar apenas próprios produtos)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://localhost:3333/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3333",
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "11"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b-hRuIfkAGnfwKvpTzajm4bAWdKxE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 06 Aug 2026 18:50:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"count\": 2\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_0yiu",
+      "secret": true
+    }
+  ]
+}

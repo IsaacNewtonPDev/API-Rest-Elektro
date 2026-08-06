@@ -1,11 +1,12 @@
 import { Prisma } from "../generated/prisma/client";
 import { prisma } from "../config/prisma";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { treeifyError } from "zod";
 import ProdutoValidator from "../config/productValidator";
+import { AuthRequest } from "../config/AuthRequest";
 
 export class ProdutoController {
-  public static async createProduto(request: Request, response: Response) {
+  public static async createProduto(request: AuthRequest, response: Response) {
     try {
       const validacao = ProdutoValidator.createProduto.safeParse(request.body);
 
@@ -14,22 +15,27 @@ export class ProdutoController {
         return;
       }
 
-      const { name, descricao, preco, avaliacao, userId } = request.body;
+      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
+      const userId = request.token_user?.id;
 
       const imagem = request.file
-        ? `uploads/photos/${request.file.filename}`
+        ? `uploads/products/${request.file.filename}`
         : null;
 
       const createInput: Prisma.ProductCreateInput = {
         name,
         descricao,
         preco,
-        avaliacao,
+        categoria,
         imagem,
         user: {
-          connect: { id: userId },
+          connect: { id: userId! },
         },
       };
+
+      if (avaliacao !== undefined) {
+        createInput.avaliacao = avaliacao;
+      }
 
       const createdProduto = await prisma.product.create({
         data: createInput,
@@ -37,11 +43,14 @@ export class ProdutoController {
 
       response.status(201).json(createdProduto);
     } catch (error: any) {
+      if (error.code === "P2025") {
+        return response.status(400).json({ message: "userId não encontrado" });
+      }
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async readProduto(request: Request, response: Response) {
+  public static async readProduto(request: AuthRequest, response: Response) {
     try {
       const { idProduto } = request.params;
 
@@ -55,6 +64,8 @@ export class ProdutoController {
               id: true,
               name: true,
               email: true,
+              contato: true,
+              foto: true,
             },
           },
         },
@@ -71,7 +82,7 @@ export class ProdutoController {
     }
   }
 
-  public static async readAllProdutos(request: Request, response: Response) {
+  public static async readAllProdutos(request: AuthRequest, response: Response) {
     try {
       const produtos = await prisma.product.findMany({
         include: {
@@ -80,6 +91,8 @@ export class ProdutoController {
               id: true,
               name: true,
               email: true,
+              contato: true,
+              foto: true,
             },
           },
         },
@@ -91,7 +104,7 @@ export class ProdutoController {
     }
   }
 
-  public static async updateProduto(request: Request, response: Response) {
+  public static async updateProduto(request: AuthRequest, response: Response) {
     try {
       const validacao = ProdutoValidator.updateProduto.safeParse(request.body);
 
@@ -101,23 +114,18 @@ export class ProdutoController {
       }
 
       const { idProduto } = request.params;
-      const { name, descricao, preco, avaliacao, userId } = request.body;
+      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
 
-      const updateInput: Prisma.ProductUpdateInput = {
-        name,
-        descricao,
-        preco,
-        avaliacao,
-      };
+      const updateInput: Prisma.ProductUpdateInput = {};
 
-      if (userId) {
-        updateInput.user = {
-          connect: { id: userId },
-        };
-      }
+      if (name !== undefined) updateInput.name = name;
+      if (descricao !== undefined) updateInput.descricao = descricao;
+      if (preco !== undefined) updateInput.preco = preco;
+      if (avaliacao !== undefined) updateInput.avaliacao = avaliacao;
+      if (categoria !== undefined) updateInput.categoria = categoria;
 
       if (request.file) {
-        updateInput.imagem = `uploads/images/${request.file.filename}`;
+        updateInput.imagem = `uploads/products/${request.file.filename}`;
       }
 
       const updatedProduto = await prisma.product.update({
@@ -129,11 +137,14 @@ export class ProdutoController {
 
       response.status(200).json(updatedProduto);
     } catch (error: any) {
+      if (error.code === "P2025") {
+        return response.status(404).json({ message: "Produto não encontrado" });
+      }
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async upsertProduto(request: Request, response: Response) {
+  public static async upsertProduto(request: AuthRequest, response: Response) {
     try {
       const validacao = ProdutoValidator.createProduto.safeParse(request.body);
 
@@ -143,67 +154,78 @@ export class ProdutoController {
       }
 
       const { idProduto } = request.params;
-      const { name, descricao, preco, avaliacao, userId } = request.body;
-
-      const imagem = request.file
-        ? `uploads/images/${request.file.filename}`
-        : null;
+      const userId = request.token_user?.id;
+      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
 
       const createInput: Prisma.ProductCreateInput = {
         name,
         descricao,
         preco,
-        avaliacao,
-        imagem,
-        user: {
-          connect: { id: userId },
-        },
+        categoria,
+        user: { connect: { id: userId! } },
       };
+
+      if (avaliacao !== undefined) {
+        createInput.avaliacao = avaliacao;
+      }
+
+      if (request.file) {
+        createInput.imagem = `uploads/images/${request.file.filename}`;
+      }
 
       const updateInput: Prisma.ProductUpdateInput = {
         name,
         descricao,
         preco,
-        avaliacao,
-        imagem,
-        user: {
-          connect: { id: userId },
-        },
+        categoria,
       };
 
+      if (avaliacao !== undefined) {
+        updateInput.avaliacao = avaliacao;
+      }
+
+      if (request.file) {
+        updateInput.imagem = `uploads/images/${request.file.filename}`;
+      }
+
       const upsertedProduto = await prisma.product.upsert({
+        where: { idProduto: Number(idProduto) },
         create: createInput,
         update: updateInput,
-        where: {
-          idProduto: Number(idProduto),
-        },
       });
 
-      response.status(201).json(upsertedProduto);
+      response.status(200).json(upsertedProduto);
     } catch (error: any) {
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async deleteProduto(request: Request, response: Response) {
+  public static async deleteProduto(request: AuthRequest, response: Response) {
     try {
       const { idProduto } = request.params;
 
-      const deletedProduto = await prisma.product.delete({
+      await prisma.product.delete({
         where: {
           idProduto: Number(idProduto),
         },
       });
 
-      response.status(200).json(deletedProduto);
+      response.status(204).send();
     } catch (error: any) {
+      if (error.code === "P2025") {
+        return response.status(404).json({ message: "Produto não encontrado" });
+      }
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async deleteAllProdutos(request: Request, response: Response) {
+  public static async deleteAllProdutos(request: AuthRequest, response: Response) {
     try {
-      const deletedProdutos = await prisma.product.deleteMany();
+      const userId = request.token_user?.id;
+
+      const deletedProdutos = await prisma.product.deleteMany({
+        where: { userId: userId! },
+      });
 
       response.status(200).json(deletedProdutos);
     } catch (error: any) {

@@ -31,6 +31,7 @@ model Product {
   imagem     String?
   preco      Float
   avaliacao  Float?
+  categoria  String
   userId     Int
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 

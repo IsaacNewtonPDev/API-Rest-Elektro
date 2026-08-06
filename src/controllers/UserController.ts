@@ -1,12 +1,13 @@
 import { Prisma } from "../generated/prisma/client";
 import { prisma } from "../config/prisma";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { treeifyError } from "zod";
 import UserValidator from "../config/userValidator";
 import auth from "../config/auth";
+import { AuthRequest } from "../config/AuthRequest";
 
 export class UserController {
-  public static async createUser(request: Request, response: Response) {
+public static async createUser(request: AuthRequest, response: Response) {
     try {
       const validacao = UserValidator.createUser.safeParse(request.body);
 
@@ -23,6 +24,24 @@ export class UserController {
 
       if (existing) {
         response.status(409).json({ message: "E-mail já cadastrado" });
+        return;
+      }
+
+      const existingCpf = await prisma.user.findUnique({
+        where: { cpf },
+      });
+
+      if (existingCpf) {
+        response.status(409).json({ message: "CPF já cadastrado" });
+        return;
+      }
+
+      const existingContato = await prisma.user.findUnique({
+        where: { contato },
+      });
+
+      if (existingContato) {
+        response.status(409).json({ message: "Contato já cadastrado" });
         return;
       }
 
@@ -60,7 +79,7 @@ export class UserController {
     }
   }
 
-  public static async loginUser(request: Request, response: Response) {
+  public static async loginUser(request: AuthRequest, response: Response) {
     try {
       const validacao = UserValidator.loginUser.safeParse(request.body);
 
@@ -105,9 +124,10 @@ export class UserController {
     }
   }
 
-  public static async readUser(request: Request, response: Response) {
+  public static async readUser(request: AuthRequest, response: Response) {
     try {
       const { userId } = request.params;
+      const userIdDoToken = request.token_user?.id;
 
       const foundUser = await prisma.user.findUnique({
         where: {
@@ -123,22 +143,32 @@ export class UserController {
         return;
       }
 
-      const { hash, salt, ...userWithoutPassword } = foundUser;
+      if (Number(userId) === Number(userIdDoToken)) {
+        const { hash, salt, ...userWithoutPassword } = foundUser;
+        response.status(200).json(userWithoutPassword);
+        return;
+      }
 
-      response.status(200).json(userWithoutPassword);
+      response.status(200).json({
+        id: foundUser.id,
+        name: foundUser.name,
+        email: foundUser.email,
+        contato: foundUser.contato,
+        foto: foundUser.foto,
+        produtos: foundUser.produtos,
+      });
     } catch (error: any) {
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async readAllUsers(request: Request, response: Response) {
+  public static async readAllUsers(request: AuthRequest, response: Response) {
     try {
       const users = await prisma.user.findMany({
         select: {
           id: true,
           name: true,
           email: true,
-          cpf: true,
           contato: true,
           foto: true,
         },
@@ -150,7 +180,7 @@ export class UserController {
     }
   }
 
-  public static async updateUser(request: Request, response: Response) {
+  public static async updateUser(request: AuthRequest, response: Response) {
     try {
       const validacao = UserValidator.updateUser.safeParse(request.body);
 
@@ -160,14 +190,20 @@ export class UserController {
       }
 
       const { userId } = request.params;
-      const { name, email, cpf, contato } = request.body;
+      const { name, email, cpf, contato, password } = validacao.data;
 
-      const updateInput: Prisma.UserUpdateInput = {
-        name,
-        email,
-        cpf,
-        contato,
-      };
+      const updateInput: Prisma.UserUpdateInput = {};
+
+      if (name !== undefined) updateInput.name = name;
+      if (email !== undefined) updateInput.email = email;
+      if (cpf !== undefined) updateInput.cpf = cpf;
+      if (contato !== undefined) updateInput.contato = contato;
+
+      if (password) {
+        const { salt, hash } = auth.generatePassword(password);
+        updateInput.hash = hash;
+        updateInput.salt = salt;
+      }
 
       if (request.file) {
         updateInput.foto = `uploads/photos/${request.file.filename}`;
@@ -194,7 +230,7 @@ export class UserController {
     }
   }
 
-  public static async upsertUser(request: Request, response: Response) {
+  public static async upsertUser(request: AuthRequest, response: Response) {
     try {
       const validacao = UserValidator.createUser.safeParse(request.body);
 
@@ -204,13 +240,9 @@ export class UserController {
       }
 
       const { userId } = request.params;
-      const { name, email, password, cpf, contato } = request.body;
+      const { name, email, password, cpf, contato } = validacao.data;
 
       const { salt, hash } = auth.generatePassword(password);
-
-      const foto = request.file
-        ? `uploads/photos/${request.file.filename}`
-        : null;
 
       const createInput: Prisma.UserCreateInput = {
         name,
@@ -219,7 +251,6 @@ export class UserController {
         salt,
         cpf,
         contato,
-        foto,
       };
 
       const updateInput: Prisma.UserUpdateInput = {
@@ -229,15 +260,17 @@ export class UserController {
         salt,
         cpf,
         contato,
-        foto,
       };
 
+      if (request.file) {
+        createInput.foto = `uploads/photos/${request.file.filename}`;
+        updateInput.foto = `uploads/photos/${request.file.filename}`;
+      }
+
       const upsertedUser = await prisma.user.upsert({
+        where: { id: Number(userId) },
         create: createInput,
         update: updateInput,
-        where: {
-          id: Number(userId),
-        },
         select: {
           id: true,
           name: true,
@@ -248,28 +281,23 @@ export class UserController {
         },
       });
 
-      response.status(201).json(upsertedUser);
+      response.status(200).json(upsertedUser);
     } catch (error: any) {
       response.status(500).json({ message: error.message });
     }
   }
 
-  public static async deleteUser(request: Request, response: Response) {
+  public static async deleteUser(request: AuthRequest, response: Response) {
     try {
       const { userId } = request.params;
 
-      const deletedUser = await prisma.user.delete({
+      await prisma.user.delete({
         where: {
           id: Number(userId),
         },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-        },
       });
 
-      response.status(204).json(deletedUser);
+      response.status(204).send();
     } catch (error: any) {
       if (error.code === "P2025") {
         return response.status(404).json({ message: "Usuário não encontrado" });
@@ -278,9 +306,13 @@ export class UserController {
     }
   }
 
-  public static async deleteAllUsers(request: Request, response: Response) {
+  public static async deleteAllUsers(request: AuthRequest, response: Response) {
     try {
-      const deletedUser = await prisma.user.deleteMany();
+      const userId = request.token_user?.id;
+
+      const deletedUser = await prisma.user.deleteMany({
+        where: { id: userId! },
+      });
 
       response.status(200).json(deletedUser);
     } catch (error: any) {

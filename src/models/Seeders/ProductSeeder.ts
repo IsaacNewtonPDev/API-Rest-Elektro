@@ -1,5 +1,5 @@
 import { fakerPT_BR as faker } from "@faker-js/faker";
-import { Prisma} from "../../generated/prisma/client";
+import { Prisma } from "../../generated/prisma/client";
 import { prisma } from "../../config/prisma"
 
 export async function productSeeder(num: number) {
@@ -11,6 +11,16 @@ export async function productSeeder(num: number) {
       descricao: faker.commerce.productDescription(),
       preco: parseFloat(faker.commerce.price()),
       avaliacao: faker.number.float({ min: 1, max: 5 }),
+      categoria: faker.helpers.arrayElement([
+        "Celulares",
+        "Notebooks",
+        "Tablets",
+        "Periféricos",
+        "TVs",
+        "Acessórios",
+        "PCs",
+        "Smartwatches",
+      ]),
       userId: faker.number.int({ min: 1, max: 20 }),
     });
   }
