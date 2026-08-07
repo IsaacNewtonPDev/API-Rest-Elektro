@@ -19,21 +19,25 @@ const produto = z.object({
     .min(0, "avaliação não pode ser negativa")
     .max(5, "avaliação não pode ser maior que 5")
     .optional(),
-  categoria: z
-    .string()
-    .min(3),
-});
+  categoria: z.enum(
+    ["Celulares", "Notebooks", "Tablets", "Periféricos", "TVs", "Acessórios", "PCs", "Smartwatches"],
+    "Categoria inválida"
+  ),
+})
 
-const createProduto = produto;
+  const createProduto = produto;
 
-const updateProduto = produto.partial();
+  const updateProduto = produto.partial();
 
 const produtoParam = z.object({
-  idProduto: z.coerce.number("Formato de id inválido"),
+  idProduto: z.coerce
+    .number("Formato de id inválido")
+    .int("id deve ser um número inteiro")
+    .positive("id deve ser positivo"),
 });
 
-export default {
-  createProduto,
-  updateProduto,
-  produtoParam,
-};
+  export default {
+    createProduto,
+    updateProduto,
+    produtoParam,
+  };

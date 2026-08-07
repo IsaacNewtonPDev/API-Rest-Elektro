@@ -52,6 +52,7 @@ router.put(
 router.put(
   "/user/:userId/upsert",
   authenticateJWT,
+  checkUserOwner,
   uploader.single("foto"),
   validateBody(UserValidator.createUser),
   validateParams(UserValidator.userParam),
@@ -104,6 +105,7 @@ router.put(
 router.put(
   "/product/:idProduto/upsert",
   authenticateJWT,
+  checkProductOwner,
   uploader.single("imagem"),
   validateBody(ProdutoValidator.createProduto),
   validateParams(ProdutoValidator.produtoParam),

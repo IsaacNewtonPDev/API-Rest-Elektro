@@ -13,11 +13,13 @@ const user = z.object({
     .max(20, "password não deve ter mais que 20 caracteres"),
   cpf: z
     .string("cpf deve ser string")
-    .length(11, "cpf deve ter 11 caracteres"),
+    .length(11, "cpf deve ter 11 caracteres")
+    .regex(/^\d{11}$/, "cpf deve conter apenas números"),
   contato: z
     .string("contato deve ser string")
     .min(10, "contato deve ter no mínimo 10 caracteres")
-    .max(15, "contato não deve ter mais que 15 caracteres"),
+    .max(15, "contato não deve ter mais que 15 caracteres")
+    .regex(/^\d+$/, "contato deve conter apenas números"),
 });
 
 const loginUser = z.object({
@@ -32,7 +34,10 @@ const createUser = user;
 const updateUser = user.partial();
 
 const userParam = z.object({
-  userId: z.coerce.number("Formato de id inválido"),
+  userId: z.coerce
+    .number("Formato de id inválido")
+    .int("id deve ser um número inteiro")
+    .positive("id deve ser positivo"),
 });
 
 export default {

@@ -1,22 +1,14 @@
 import { Prisma } from "../generated/prisma/client";
 import { prisma } from "../config/prisma";
 import { Response } from "express";
-import { treeifyError } from "zod";
 import UserValidator from "../config/userValidator";
 import auth from "../config/auth";
 import { AuthRequest } from "../config/AuthRequest";
 
 export class UserController {
-public static async createUser(request: AuthRequest, response: Response) {
+  public static async createUser(request: AuthRequest, response: Response) {
     try {
-      const validacao = UserValidator.createUser.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
-      const { name, email, password, cpf, contato } = request.body;
+      const { name, email, password, cpf, contato } = UserValidator.createUser.parse(request.body);
 
       const existing = await prisma.user.findUnique({
         where: { email },
@@ -81,14 +73,7 @@ public static async createUser(request: AuthRequest, response: Response) {
 
   public static async loginUser(request: AuthRequest, response: Response) {
     try {
-      const validacao = UserValidator.loginUser.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
-      const { email, password } = request.body;
+      const { email, password } = UserValidator.loginUser.parse(request.body);
 
       const user = await prisma.user.findUnique({
         where: { email },
@@ -182,15 +167,38 @@ public static async createUser(request: AuthRequest, response: Response) {
 
   public static async updateUser(request: AuthRequest, response: Response) {
     try {
-      const validacao = UserValidator.updateUser.safeParse(request.body);
+      const { userId } = request.params;
+      const { name, email, cpf, contato, password } = UserValidator.updateUser.parse(request.body);
 
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
+      if (email !== undefined) {
+        const existing = await prisma.user.findFirst({
+          where: { email, NOT: { id: Number(userId) } },
+        });
+        if (existing) {
+          response.status(409).json({ message: "E-mail já cadastrado" });
+          return;
+        }
       }
 
-      const { userId } = request.params;
-      const { name, email, cpf, contato, password } = validacao.data;
+      if (cpf !== undefined) {
+        const existingCpf = await prisma.user.findFirst({
+          where: { cpf, NOT: { id: Number(userId) } },
+        });
+        if (existingCpf) {
+          response.status(409).json({ message: "CPF já cadastrado" });
+          return;
+        }
+      }
+
+      if (contato !== undefined) {
+        const existingContato = await prisma.user.findFirst({
+          where: { contato, NOT: { id: Number(userId) } },
+        });
+        if (existingContato) {
+          response.status(409).json({ message: "Contato já cadastrado" });
+          return;
+        }
+      }
 
       const updateInput: Prisma.UserUpdateInput = {};
 
@@ -211,9 +219,7 @@ public static async createUser(request: AuthRequest, response: Response) {
 
       const updatedUser = await prisma.user.update({
         data: updateInput,
-        where: {
-          id: Number(userId),
-        },
+        where: { id: Number(userId) },
         select: {
           id: true,
           name: true,
@@ -226,40 +232,54 @@ public static async createUser(request: AuthRequest, response: Response) {
 
       response.status(200).json(updatedUser);
     } catch (error: any) {
+      if (error.code === "P2025") {
+        return response.status(404).json({ message: "Usuário não encontrado" });
+      }
       response.status(500).json({ message: error.message });
     }
   }
 
   public static async upsertUser(request: AuthRequest, response: Response) {
     try {
-      const validacao = UserValidator.createUser.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
       const { userId } = request.params;
-      const { name, email, password, cpf, contato } = validacao.data;
+      const { name, email, password, cpf, contato } = UserValidator.createUser.parse(request.body);
+
+      const existingUser = await prisma.user.findUnique({
+        where: { id: Number(userId) },
+      });
+
+      if (!existingUser) {
+        if (email) {
+          const existingEmail = await prisma.user.findUnique({ where: { email } });
+          if (existingEmail) {
+            response.status(409).json({ message: "E-mail já cadastrado" });
+            return;
+          }
+        }
+        if (cpf) {
+          const existingCpf = await prisma.user.findUnique({ where: { cpf } });
+          if (existingCpf) {
+            response.status(409).json({ message: "CPF já cadastrado" });
+            return;
+          }
+        }
+        if (contato) {
+          const existingContato = await prisma.user.findUnique({ where: { contato } });
+          if (existingContato) {
+            response.status(409).json({ message: "Contato já cadastrado" });
+            return;
+          }
+        }
+      }
 
       const { salt, hash } = auth.generatePassword(password);
 
       const createInput: Prisma.UserCreateInput = {
-        name,
-        email,
-        hash,
-        salt,
-        cpf,
-        contato,
+        name, email, hash, salt, cpf, contato,
       };
 
       const updateInput: Prisma.UserUpdateInput = {
-        name,
-        email,
-        hash,
-        salt,
-        cpf,
-        contato,
+        name, email, hash, salt, cpf, contato,
       };
 
       if (request.file) {
@@ -272,18 +292,17 @@ public static async createUser(request: AuthRequest, response: Response) {
         create: createInput,
         update: updateInput,
         select: {
-          id: true,
-          name: true,
-          email: true,
-          cpf: true,
-          contato: true,
-          foto: true,
+          id: true, name: true, email: true, cpf: true, contato: true, foto: true,
         },
       });
 
       response.status(200).json(upsertedUser);
     } catch (error: any) {
-      response.status(500).json({ message: error.message });
+      if (error.code === "P2002") {
+        response.status(409).json({ message: "Campo já cadastrado" });
+        return;
+      }
+      response.status(500).json({ message: "Erro interno do servidor" });
     }
   }
 

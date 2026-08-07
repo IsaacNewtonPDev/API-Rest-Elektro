@@ -1,21 +1,13 @@
 import { Prisma } from "../generated/prisma/client";
 import { prisma } from "../config/prisma";
 import { Response } from "express";
-import { treeifyError } from "zod";
 import ProdutoValidator from "../config/productValidator";
 import { AuthRequest } from "../config/AuthRequest";
 
 export class ProdutoController {
   public static async createProduto(request: AuthRequest, response: Response) {
     try {
-      const validacao = ProdutoValidator.createProduto.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
-      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
+      const { name, descricao, preco, avaliacao, categoria } = ProdutoValidator.createProduto.parse(request.body);
       const userId = request.token_user?.id;
 
       const imagem = request.file
@@ -106,15 +98,8 @@ export class ProdutoController {
 
   public static async updateProduto(request: AuthRequest, response: Response) {
     try {
-      const validacao = ProdutoValidator.updateProduto.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
       const { idProduto } = request.params;
-      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
+      const { name, descricao, preco, avaliacao, categoria } = ProdutoValidator.updateProduto.parse(request.body);
 
       const updateInput: Prisma.ProductUpdateInput = {};
 
@@ -146,16 +131,9 @@ export class ProdutoController {
 
   public static async upsertProduto(request: AuthRequest, response: Response) {
     try {
-      const validacao = ProdutoValidator.createProduto.safeParse(request.body);
-
-      if (validacao.error) {
-        response.status(400).json({ errors: treeifyError(validacao.error) });
-        return;
-      }
-
       const { idProduto } = request.params;
       const userId = request.token_user?.id;
-      const { name, descricao, preco, avaliacao, categoria } = validacao.data;
+      const { name, descricao, preco, avaliacao, categoria } = ProdutoValidator.createProduto.parse(request.body);
 
       const createInput: Prisma.ProductCreateInput = {
         name,
